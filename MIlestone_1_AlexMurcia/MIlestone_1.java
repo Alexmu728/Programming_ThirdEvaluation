@@ -51,13 +51,27 @@ public class MIlestone_1 extends JFrame {
         group.add(radioButton[2]);
 
 
-        //
+        //Center
+        JPanel center= new JPanel();
+        center.setLayout(new GridLayout(2, 2));
 
+        ImageIcon image= new ImageIcon("Image/spiders.jpg");
+
+        JLabel imageLabel= new JLabel(image);
+        JLabel imageLabel2= new JLabel(image);
+        JLabel imageLabel3= new JLabel(image);
+        JLabel imageLabel4= new JLabel(image);
+
+        center.add(imageLabel);
+        center.add(imageLabel2);
+        center.add(imageLabel3);
+        center.add(imageLabel4);
 
         //Adding to the main container
         mainContainer.add(north, BorderLayout.NORTH);
         mainContainer.add(south, BorderLayout.SOUTH);
         mainContainer.add(east, BorderLayout.EAST);
+        mainContainer.add(center, BorderLayout.CENTER);
 
         this.add(mainContainer);
         this.pack();
