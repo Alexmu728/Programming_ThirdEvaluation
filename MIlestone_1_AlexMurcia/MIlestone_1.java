@@ -19,8 +19,19 @@ public class MIlestone_1 extends JFrame {
         north.add(checkBox);
         north.add(checkBox2);
 
-        mainContainer.add(north, BorderLayout.NORTH);
+        //South
+        JButton button= new JButton("But 1");
+        JButton button2= new JButton("But 2");
 
+        FlowLayout flowLeft= new FlowLayout(FlowLayout.LEFT);
+        JPanel south= new JPanel();
+        south.setLayout(flowLeft);
+        south.add(button);
+        south.add(button2);
+
+        //Adding to the main container
+        mainContainer.add(north, BorderLayout.NORTH);
+        mainContainer.add(south, BorderLayout.SOUTH);
 
         this.add(mainContainer);
         this.pack();
