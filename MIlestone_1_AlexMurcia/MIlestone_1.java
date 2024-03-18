@@ -34,11 +34,27 @@ public class MIlestone_1 extends JFrame {
 
 
         //East
+        JPanel east = new JPanel();
+        //I took as a reference the this.setPreferredSize of the beginning
+        east.setPreferredSize(new Dimension(250, 0));
+        //east.setBackground(Color.BLUE);
+
+        JRadioButton[] radioButton= new JRadioButton[3];
+        for(int i=0;i<radioButton.length;i++){
+            radioButton[i]= new JRadioButton("OPT "+i);
+            east.add(radioButton[i]);
+        }
+        radioButton[0].setSelected(true);
+        ButtonGroup group= new ButtonGroup();
+        group.add(radioButton[0]);
+        group.add(radioButton[1]);
+        group.add(radioButton[2]);
 
 
         //Adding to the main container
         mainContainer.add(north, BorderLayout.NORTH);
         mainContainer.add(south, BorderLayout.SOUTH);
+        mainContainer.add(east, BorderLayout.EAST);
 
         this.add(mainContainer);
         this.pack();
