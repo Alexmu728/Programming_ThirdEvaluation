@@ -26,9 +26,9 @@ public class MIlestone_1 extends JFrame {
         JButton button= new JButton("But 1");
         JButton button2= new JButton("But 2");
 
-        FlowLayout flowLeft= new FlowLayout(FlowLayout.LEFT);
         JPanel south= new JPanel();
-        south.setLayout(flowLeft);
+        south.setLayout(new BoxLayout(south, BoxLayout.X_AXIS));
+        south.setPreferredSize(new Dimension(0, 50));
         south.add(button);
         south.add(button2);
 
@@ -49,6 +49,9 @@ public class MIlestone_1 extends JFrame {
         group.add(radioButton[0]);
         group.add(radioButton[1]);
         group.add(radioButton[2]);
+
+
+        //
 
 
         //Adding to the main container
