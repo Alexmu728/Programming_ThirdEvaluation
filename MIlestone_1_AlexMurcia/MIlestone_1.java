@@ -15,9 +15,12 @@ public class MIlestone_1 extends JFrame {
         JCheckBox checkBox= new JCheckBox("Katniss");
         JCheckBox checkBox2= new JCheckBox("Peeta");
 
+        FlowLayout flowCenter= new FlowLayout(FlowLayout.CENTER);
         JPanel north= new JPanel();
+        north.setLayout(flowCenter);
         north.add(checkBox);
         north.add(checkBox2);
+
 
         //South
         JButton button= new JButton("But 1");
@@ -28,6 +31,10 @@ public class MIlestone_1 extends JFrame {
         south.setLayout(flowLeft);
         south.add(button);
         south.add(button2);
+
+
+        //East
+
 
         //Adding to the main container
         mainContainer.add(north, BorderLayout.NORTH);
