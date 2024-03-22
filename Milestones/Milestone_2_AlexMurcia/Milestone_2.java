@@ -28,11 +28,13 @@ public class Milestone_2 extends JFrame implements ActionListener {
         JPanel east= new JPanel();
 
         JTextArea text= new JTextArea();
+        JScrollPane scroll= new JScrollPane(text);
 
+        east.add(scroll);
 
         //Add main panel
         mainPanel.add(center, BorderLayout.CENTER);
-
+        mainPanel.add(east, BorderLayout.EAST);
 
         this.add(mainPanel);
         this.pack();
