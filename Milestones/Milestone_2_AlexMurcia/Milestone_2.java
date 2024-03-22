@@ -15,12 +15,19 @@ public class Milestone_2 extends JFrame implements ActionListener {
 
 
         //ComboBox-Center
+        JPanel center= new JPanel();
+
         String[] fileTextNames={"java.txt", "python.txt", "c.txt"};
         JComboBox box= new JComboBox(fileTextNames);
         box.addActionListener(this);
 
-        JPanel center= new JPanel();
         center.add(box);
+
+
+        //TextArea East
+        JPanel east= new JPanel();
+
+        JTextArea text= new JTextArea();
 
 
         //Add main panel
