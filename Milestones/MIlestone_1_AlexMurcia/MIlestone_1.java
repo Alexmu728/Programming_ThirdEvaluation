@@ -1,4 +1,4 @@
-package MIlestone_1_AlexMurcia;
+package Milestones.MIlestone_1_AlexMurcia;
 
 import javax.swing.*;
 import java.awt.*;
