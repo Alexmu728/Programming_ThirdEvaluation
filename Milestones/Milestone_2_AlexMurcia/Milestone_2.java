@@ -76,6 +76,8 @@ public class Milestone_2 extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+
+    //I think that is not taking the .txt files and does not work
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox comboBox= (JComboBox) e.getSource();
