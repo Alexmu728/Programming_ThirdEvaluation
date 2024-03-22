@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class Milestone_2 extends JFrame implements ActionListener {
+    private JTextArea text;
     public Milestone_2(){
         super("Test Events: Files");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,7 +33,7 @@ public class Milestone_2 extends JFrame implements ActionListener {
         //TextArea East
         JPanel east= new JPanel();
 
-        JTextArea text= new JTextArea();
+        text= new JTextArea();
         JScrollPane scroll= new JScrollPane(text);
 
         scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -40,6 +42,7 @@ public class Milestone_2 extends JFrame implements ActionListener {
 
         east.add(scroll);
 
+
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,9 +50,26 @@ public class Milestone_2 extends JFrame implements ActionListener {
             }
         });
 
+
+        //Close button south
+        JPanel south= new JPanel();
+
+        JButton close= new JButton("Close");
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                dispose();
+            }
+        });
+
+        south.add(close);
+
+
         //Add main panel
         mainPanel.add(center, BorderLayout.CENTER);
         mainPanel.add(east, BorderLayout.EAST);
+        mainPanel.add(south, BorderLayout.SOUTH);
 
         this.add(mainPanel);
         this.pack();
@@ -58,7 +78,18 @@ public class Milestone_2 extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        JComboBox comboBox= (JComboBox) e.getSource();
+        String fileName= (String) comboBox.getSelectedItem();
+        try{
+            File file= new File(fileName);
+            BufferedReader br= new BufferedReader(new FileReader(file));
+            String line;
+            while((line=br.readLine())!= null){
+                text.append(line);
+            }
+        }catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "File not found","Error message", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public static void main(String[] args) {
