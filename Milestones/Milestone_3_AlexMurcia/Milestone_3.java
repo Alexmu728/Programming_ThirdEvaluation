@@ -1,4 +1,9 @@
 package Milestones.Milestone_3_AlexMurcia;
 
-public class Milestone_3 {
+import javax.swing.*;
+
+public class Milestone_3 extends JFrame {
+    public Milestone_3(){
+        super("Swing - Example 2");
+    }
 }
