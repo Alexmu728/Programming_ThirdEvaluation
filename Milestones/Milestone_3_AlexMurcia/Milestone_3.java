@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Arrays;
+import java.util.Iterator;
 
 public class Milestone_3 extends JFrame {
     public Milestone_3(){
@@ -18,11 +21,11 @@ public class Milestone_3 extends JFrame {
             //North
             JPanel north= new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-            String[] images={"spiderman.jpg", "tlou.jfif", "httyd.jpg"};
-            JComboBox box= new JComboBox(images);
 
+            String[] images={"spiderman.jpg", "httyd.jpg", "tlou.jfif"};
+            JComboBox <String> box= new JComboBox<>(images);
             box.setPreferredSize(new Dimension(225, 50));
-            load_combo();
+           // load_combo(box);
 
 
             //Center
@@ -57,7 +60,7 @@ public class Milestone_3 extends JFrame {
             JPanel south= new JPanel();
 
             JButton save= new JButton("Save");
-
+            save.addActionListener();
 
             south.add(save);
 
@@ -79,8 +82,29 @@ public class Milestone_3 extends JFrame {
 
     }
 
-
-
+    /*public void load_combo(JComboBox<String> box){
+        String path="images";
+        System.out.println("Loading images from: " + path); // Diagnostic
+        File folder= new File(path);
+        if(folder.exists()){
+            File[] files = folder.listFiles();
+            if(files != null){
+                Iterator<File> fileIterator= Arrays.asList(files).iterator();
+                while(fileIterator.hasNext()){
+                    File file= fileIterator.next();
+                    if(file.isFile()){
+                        System.out.println("Adding file to combo: " + file.getName()); // Diagnostic
+                        box.addItem(file.getName());
+                    }
+                }
+            } else {
+            System.out.println("No files found in directory."); // Diagnostic
+        }
+    } else {
+        System.out.println("Directory not found."); // Diagnostic
+        }
+    }
+*/
 
     public static void main(String[] args) {
         Milestone_3 m3= new Milestone_3();
