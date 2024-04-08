@@ -2,6 +2,8 @@ package Milestones.Milestone_3_AlexMurcia;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Milestone_3 extends JFrame {
     public Milestone_3(){
@@ -21,9 +23,19 @@ public class Milestone_3 extends JFrame {
 
             box.setPreferredSize(new Dimension(225, 50));
 
+            /*box.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });*/
+
             north.add(box);
 
+            //Center
+            JPanel center= new JPanel(new FlowLayout(FlowLayout.LEFT));
 
+            JLabel image= new JLabel();
 
 
             //Add main panel
