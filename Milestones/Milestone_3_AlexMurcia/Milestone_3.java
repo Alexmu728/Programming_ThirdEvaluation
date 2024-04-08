@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -14,7 +16,7 @@ public class Milestone_3 extends JFrame {
         String password = JOptionPane.showInputDialog("Input password");
         if(password.equals("damocles")){
             this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-            this.setPreferredSize(new Dimension(600, 600));
+            this.setPreferredSize(new Dimension(400, 400));
 
             JPanel mainPanel= new JPanel(new BorderLayout());
 
@@ -30,15 +32,15 @@ public class Milestone_3 extends JFrame {
 
 
             //Center
-            JPanel center= new JPanel(new FlowLayout(FlowLayout.LEFT));
+            JPanel center= new JPanel(new BorderLayout());
 
             JLabel image= new JLabel();
 
             JCheckBox saveComment= new JCheckBox("Save your comment");
 
 
-            center.add(image);
-            center.add(saveComment);
+            center.add(image, BorderLayout.CENTER);
+            center.add(saveComment, BorderLayout.SOUTH);
 
 
 
@@ -47,14 +49,14 @@ public class Milestone_3 extends JFrame {
             north.add(box);
 
             //East
-            JPanel east= new JPanel(new FlowLayout(FlowLayout.TRAILING));
+            JPanel east= new JPanel(new BorderLayout());
 
             JTextField comment= new JTextField();
 
             comment.setPreferredSize(new Dimension(200, 30));
 
 
-            east.add(comment);
+            east.add(comment, BorderLayout.SOUTH);
 
 
             //South
@@ -96,6 +98,12 @@ public class Milestone_3 extends JFrame {
             this.pack();
             setVisible(true);
 
+            this.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    JOptionPane.showMessageDialog(null, "Bye!");
+                }
+            });
 
         }else{
             setVisible(false);
