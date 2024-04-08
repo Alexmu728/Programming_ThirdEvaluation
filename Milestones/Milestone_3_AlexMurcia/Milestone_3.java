@@ -16,7 +16,7 @@ public class Milestone_3 extends JFrame {
             //North
             JPanel north= new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-            String[] images={"spiderman.jpg", "tlou.jpg", "httyd.jpg"};
+            String[] images={"spiderman.jpg", "tlou.jfif", "httyd.jpg"};
             JComboBox box= new JComboBox(images);
 
             box.setPreferredSize(new Dimension(225, 50));
