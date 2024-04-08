@@ -22,15 +22,8 @@ public class Milestone_3 extends JFrame {
             JComboBox box= new JComboBox(images);
 
             box.setPreferredSize(new Dimension(225, 50));
+            load_combo();
 
-            /*box.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                }
-            });*/
-
-            north.add(box);
 
             //Center
             JPanel center= new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -42,6 +35,12 @@ public class Milestone_3 extends JFrame {
 
             center.add(image);
             center.add(saveComment);
+
+
+
+            box.addActionListener(new ComboListener(box, image));
+
+            north.add(box);
 
             //East
             JPanel east= new JPanel(new FlowLayout(FlowLayout.TRAILING));
@@ -71,12 +70,16 @@ public class Milestone_3 extends JFrame {
             this.add(mainPanel);
             this.pack();
             setVisible(true);
+
+
         }else{
             setVisible(false);
             dispose();
         }
 
     }
+
+
 
 
     public static void main(String[] args) {
