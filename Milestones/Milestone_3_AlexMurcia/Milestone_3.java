@@ -48,6 +48,8 @@ public class Milestone_3 extends JFrame {
 
             JTextField comment= new JTextField();
 
+            comment.setPreferredSize(new Dimension(200, 30));
+
             east.add(comment);
 
             //Add main panel
