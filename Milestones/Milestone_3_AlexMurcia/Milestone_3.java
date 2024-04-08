@@ -50,12 +50,23 @@ public class Milestone_3 extends JFrame {
 
             comment.setPreferredSize(new Dimension(200, 30));
 
+
             east.add(comment);
+
+
+            //South
+            JPanel south= new JPanel();
+
+            JButton save= new JButton("Save");
+
+
+            south.add(save);
 
             //Add main panel
             mainPanel.add(north, BorderLayout.NORTH);
             mainPanel.add(center, BorderLayout.CENTER);
             mainPanel.add(east, BorderLayout.EAST);
+            mainPanel.add(south, BorderLayout.SOUTH);
 
             this.add(mainPanel);
             this.pack();
