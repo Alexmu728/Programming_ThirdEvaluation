@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -25,6 +25,7 @@ public class Milestone_3 extends JFrame {
             String[] images={"spiderman.jpg", "httyd.jpg", "tlou.jfif"};
             JComboBox <String> box= new JComboBox<>(images);
             box.setPreferredSize(new Dimension(225, 50));
+
            // load_combo(box);
 
 
@@ -60,7 +61,28 @@ public class Milestone_3 extends JFrame {
             JPanel south= new JPanel();
 
             JButton save= new JButton("Save");
-            save.addActionListener();
+            save.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String image= (String) box.getSelectedItem();
+
+                    if(saveComment.isSelected()){
+                        String Comment = comment.getText();
+
+                        if(!Comment.isEmpty()){
+                            String fileName= image+".txt";
+
+                            try{
+                                BufferedWriter bw= new BufferedWriter(new FileWriter(fileName));
+                                bw.write(Comment);
+                                bw.newLine();
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
 
             south.add(save);
 
@@ -84,7 +106,6 @@ public class Milestone_3 extends JFrame {
 
     /*public void load_combo(JComboBox<String> box){
         String path="images";
-        System.out.println("Loading images from: " + path); // Diagnostic
         File folder= new File(path);
         if(folder.exists()){
             File[] files = folder.listFiles();
@@ -93,17 +114,11 @@ public class Milestone_3 extends JFrame {
                 while(fileIterator.hasNext()){
                     File file= fileIterator.next();
                     if(file.isFile()){
-                        System.out.println("Adding file to combo: " + file.getName()); // Diagnostic
                         box.addItem(file.getName());
                     }
                 }
-            } else {
-            System.out.println("No files found in directory."); // Diagnostic
+            }
         }
-    } else {
-        System.out.println("Directory not found."); // Diagnostic
-        }
-    }
 */
 
     public static void main(String[] args) {
