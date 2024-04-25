@@ -25,7 +25,7 @@ public class PictureViewer extends JFrame {
         JXDatePicker date=new JXDatePicker();
 
         //Area 3
-        JList
+        JList<Picture> list = new JList<>();
 
 
 
