@@ -13,7 +13,15 @@ public class PictureViewer extends JFrame {
         JPanel grid1= new JPanel(new GridLayout(2, 2));
 
         //Area 1
-        JComboBox<Photographer>
+        JLabel comboName= new JLabel("Photographer: ");
+        JComboBox<Photographer> comboBox= new JComboBox<>();
+
+        //Area 2
+
+
+        //Adding to grid layout
+        grid1.add(comboName);
+        grid1.add(comboBox);
 
         this.add(grid1);
         this.pack();
