@@ -27,6 +27,9 @@ public class PictureViewer extends JFrame {
         //Area 3
         JList<Picture> list = new JList<>();
 
+        //Area 4
+        JLabel image= new JLabel();
+
 
 
         //Adding to grid layout
