@@ -9,7 +9,13 @@ public class PictureViewer extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(600, 300));
 
+        //Grid layout
+        JPanel grid1= new JPanel(new GridLayout(2, 2));
 
+        //Area 1
+        JComboBox<Photographer>
+
+        this.add(grid1);
         this.pack();
         setVisible(true);
     }
