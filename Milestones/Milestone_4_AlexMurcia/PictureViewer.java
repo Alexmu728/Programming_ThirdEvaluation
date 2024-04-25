@@ -34,7 +34,9 @@ public class PictureViewer extends JFrame {
 
         //Area 3
         JPanel area3= new JPanel();
+        //Picture names[] = {"image/anseldams1.jps"};
         JList<Picture> list = new JList<>();
+
 
         area3.add(list);
 
