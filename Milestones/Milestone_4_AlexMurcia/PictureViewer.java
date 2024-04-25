@@ -17,6 +17,7 @@ public class PictureViewer extends JFrame {
         JComboBox<Photographer> comboBox= new JComboBox<>();
 
         //Area 2
+        JLabel dateName= new JLabel("Photos after");
 
 
         //Adding to grid layout
