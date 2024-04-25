@@ -17,27 +17,39 @@ public class PictureViewer extends JFrame {
         JPanel grid1= new JPanel(new GridLayout(2, 2));
 
         //Area 1
+        JPanel area1= new JPanel();
         JLabel comboName= new JLabel("Photographer: ");
         JComboBox<Photographer> comboBox= new JComboBox<>();
 
+        area1.add(comboName);
+        area1.add(comboBox);
+
         //Area 2
+        JPanel area2= new JPanel();
         JLabel dateName= new JLabel("Photos after");
         JXDatePicker date=new JXDatePicker();
 
+        area2.add(dateName);
+        area2.add(date);
+
         //Area 3
+        JPanel area3= new JPanel();
         JList<Picture> list = new JList<>();
 
+        area3.add(list);
+
         //Area 4
+        JPanel area4= new JPanel();
         JLabel image= new JLabel();
 
+        area4.add(image);
 
 
         //Adding to grid layout
-        grid1.add(comboName);
-        grid1.add(comboBox);
-        grid1.add(dateName);
-        grid1.add(date);
-
+        grid1.add(area1);
+        grid1.add(area2);
+        grid1.add(area3);
+        grid1.add(area4);
 
         this.add(grid1);
         this.pack();
