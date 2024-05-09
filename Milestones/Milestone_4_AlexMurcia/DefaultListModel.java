@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public class DefaultListModel {
     static final String SERVER_IP = "localhost";
-    static final String DB_NAME = "prueba1";
+    static final String DB_NAME = "Milestone4";
     static final String USER = "root";
     static final String PASSWORD= "root";
-    static final String JDBC_DRIVER = "org.mariadb.jbc.Driver";
-    static final String DB_URL = "jdbc:mariadb://"+SERVER_IP+":3386"+DB_NAME;
+    static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
+    static final String DB_URL = "jdbc:mariadb://"+SERVER_IP+":3306/"+DB_NAME;
 
     private Connection connection;
 
@@ -38,5 +38,6 @@ public class DefaultListModel {
 
     public static void main(String[] args) {
         DefaultListModel dlm= new DefaultListModel();
+        dlm.close();
     }
 }

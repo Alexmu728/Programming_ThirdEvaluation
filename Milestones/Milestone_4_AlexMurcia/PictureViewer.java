@@ -4,10 +4,16 @@ import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PictureViewer extends JFrame {
+
+    DefaultListModel dl= new DefaultListModel();
+
     public PictureViewer() {
         super("Photography");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +58,13 @@ public class PictureViewer extends JFrame {
         grid1.add(area2);
         grid1.add(area3);
         grid1.add(area4);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dl.close();
+            }
+        });
 
         this.add(grid1);
         this.pack();
