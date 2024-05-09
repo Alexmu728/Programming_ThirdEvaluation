@@ -1,8 +1,7 @@
 package Milestones.Milestone_4_AlexMurcia;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class DefaultListModel {
     static final String SERVER_IP = "localhost";
@@ -27,6 +26,27 @@ public class DefaultListModel {
         }
     }
 
+
+    public ArrayList<Photographer> photographers(){
+        ArrayList<Photographer> photographs= new ArrayList<>();
+        try{
+            Statement statement= connection.createStatement();
+            ResultSet resultSet= statement.executeQuery("Select * From Photographers");
+                while(resultSet.next()){
+                    int photographerId=resultSet.getInt("PhotographerId");
+                    String name=resultSet.getString("Name");
+                    boolean awarded= resultSet.getBoolean("Awarded");
+                    photographs.add(new Photographer(photographerId, name, awarded));
+                }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return photographs;
+    }
+
+
+
+
     public void close(){
         try{
             connection.close();
@@ -36,8 +56,8 @@ public class DefaultListModel {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         DefaultListModel dlm= new DefaultListModel();
         dlm.close();
-    }
+    }*/
 }

@@ -21,4 +21,16 @@ public class Photographer {
     public boolean getAwarded(){
         return awarded;
     }
+
+    public void setPhotographerId(int photographerId) {
+        this.photographerId = photographerId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAwarded(boolean awarded) {
+        this.awarded = awarded;
+    }
 }

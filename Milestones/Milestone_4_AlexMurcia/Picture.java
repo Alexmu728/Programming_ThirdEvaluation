@@ -42,4 +42,28 @@ public class Picture {
     public int getPhotographerId() {
         return photographerId;
     }
+
+    public void setPictureId(int pictureId) {
+        this.pictureId = pictureId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public void setVisits(int visits) {
+        this.visits = visits;
+    }
+
+    public void setPhotographerId(int photographerId) {
+        this.photographerId = photographerId;
+    }
 }
