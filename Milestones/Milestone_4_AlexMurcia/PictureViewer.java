@@ -26,7 +26,8 @@ public class PictureViewer extends JFrame {
         JPanel area1= new JPanel();
         JLabel comboName= new JLabel("Photographer: ");
 
-        JComboBox<Photographer> comboBox= new JComboBox<>();
+
+        JComboBox<Photographer> comboBox= new JComboBox<>(dl.photographers());
 
         area1.add(comboName);
         area1.add(comboBox);

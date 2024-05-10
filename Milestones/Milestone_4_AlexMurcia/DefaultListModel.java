@@ -27,16 +27,19 @@ public class DefaultListModel {
     }
 
 
-    public ArrayList<Photographer> photographers(){
-        ArrayList<Photographer> photographs= new ArrayList<>();
+    public Photographer[] photographers(){
+        Photographer[] photographs= new Photographer[3];
         try{
             Statement statement= connection.createStatement();
             ResultSet resultSet= statement.executeQuery("Select * From Photographers");
                 while(resultSet.next()){
-                    int photographerId=resultSet.getInt("PhotographerId");
-                    String name=resultSet.getString("Name");
-                    boolean awarded= resultSet.getBoolean("Awarded");
-                    photographs.add(new Photographer(photographerId, name, awarded));
+                    Photographer photographer= new Photographer();
+                    for(int i=0; i<photographs.length;i++) {
+                        photographer.setPhotographerId(resultSet.getInt("PhotographerId"));
+                        photographer.setName(resultSet.getString("Name"));
+                        photographer.setAwarded(resultSet.getBoolean("Awarded"));
+                        photographs[i]=photographer;
+                    }
                 }
         }catch (SQLException e){
             e.printStackTrace();
@@ -44,7 +47,22 @@ public class DefaultListModel {
         return photographs;
     }
 
-
+    /*public ArrayList<Photographer> photographers(){
+        ArrayList<Photographer> photographs= new ArrayList<>();
+        try{
+            Statement statement= connection.createStatement();
+            ResultSet resultSet= statement.executeQuery("Select * From Photographers");
+            while(resultSet.next()){
+                int photographerId=resultSet.getInt("PhotographerId");
+                String name=resultSet.getString("Name");
+                boolean awarded= resultSet.getBoolean("Awarded");
+                photographs.add(new Photographer(photographerId, name, awarded));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return photographs;
+    }*/
 
 
     public void close(){
