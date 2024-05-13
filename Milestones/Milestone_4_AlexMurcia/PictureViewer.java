@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.awt.event.WindowListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,7 +28,17 @@ public class PictureViewer extends JFrame {
         JLabel comboName= new JLabel("Photographer: ");
 
 
-        JComboBox<Photographer> comboBox= new JComboBox<>(dl.photographers());
+        ArrayList<Photographer> photographerList= dl.photographers();
+
+        DefaultComboBoxModel<Photographer> model= new DefaultComboBoxModel<>();
+        model.addAll(photographerList);
+
+        JComboBox<Photographer> comboBox= new JComboBox<>(model);
+        comboBox.setSelectedIndex(0);
+
+        /*for(Photographer photographer : photographerList){
+            comboBox.addItem(photographer);
+        }*/
 
         area1.add(comboName);
         area1.add(comboBox);

@@ -27,7 +27,7 @@ public class DefaultListModel {
     }
 
 
-    public Photographer[] photographers(){
+    /*public Photographer[] photographers(){
         Photographer[] photographs= new Photographer[3];
         try{
             Statement statement= connection.createStatement();
@@ -46,8 +46,8 @@ public class DefaultListModel {
         }
         return photographs;
     }
-
-    /*public ArrayList<Photographer> photographers(){
+*/
+    public ArrayList<Photographer> photographers(){
         ArrayList<Photographer> photographs= new ArrayList<>();
         try{
             Statement statement= connection.createStatement();
@@ -62,7 +62,7 @@ public class DefaultListModel {
             e.printStackTrace();
         }
         return photographs;
-    }*/
+    }
 
 
     public void close(){

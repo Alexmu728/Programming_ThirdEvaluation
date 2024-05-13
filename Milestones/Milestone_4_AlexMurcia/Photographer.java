@@ -5,17 +5,19 @@ public class Photographer {
     private String name;
     private boolean awarded;
 
-    /*public Photographer(int photographerId, String name, boolean awarded){
+    public Photographer(int photographerId, String name, boolean awarded){
         this.photographerId= photographerId;
         this.name= name;
         this.awarded= awarded;
-    }*/
-
+    }
+/*
     public Photographer(){
         this.photographerId= photographerId;
         this.name= name;
         this.awarded= awarded;
     }
+    */
+
 
     public String getName() {
         return name;
@@ -38,5 +40,10 @@ public class Photographer {
 
     public void setAwarded(boolean awarded) {
         this.awarded = awarded;
+    }
+
+
+    public String toString(){
+        return this.name;
     }
 }
