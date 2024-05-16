@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.awt.event.WindowListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 
 public class PictureViewer extends JFrame {
+    private JXDatePicker date;
 
     DefaultListModel dl= new DefaultListModel();
 
@@ -46,18 +48,39 @@ public class PictureViewer extends JFrame {
         //Area 2
         JPanel area2= new JPanel();
         JLabel dateName= new JLabel("Photos after");
-        JXDatePicker date=new JXDatePicker();
+        date=new JXDatePicker();
 
         area2.add(dateName);
         area2.add(date);
 
         //Area 3
         JPanel area3= new JPanel();
-        //Picture names[] = {"image/anseldams1.jps"};
-        JList<Picture> list = new JList<>();
+
+        ArrayList<Picture> pictures= dl.pictures();
+
+        javax.swing.DefaultListModel<Picture> listModel= new javax.swing.DefaultListModel<>();
+
+        Iterator<Picture> iterator= pictures.iterator();
+
+        while(iterator.hasNext()){
+            Picture picture= iterator.next();
+            if(picture.getDate().after(date.getDate())){
+                listModel.addAll(pictures);
+            }
+        }
+
+        JList<Picture> list = new JList<>(listModel);
+        list.setPreferredSize(new Dimension(290,130));
+
+        JScrollPane scroll= new JScrollPane(list);
+
+        scroll.setPreferredSize(new Dimension(290, 130));
+
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 
-        area3.add(list);
+        area3.add(scroll);
 
         //Area 4
         JPanel area4= new JPanel();
@@ -84,6 +107,9 @@ public class PictureViewer extends JFrame {
         setVisible(true);
     }
 
+    public JXDatePicker getDate() {
+        return date;
+    }
 
     public static void main(String[] args) {
         PictureViewer pv= new PictureViewer();

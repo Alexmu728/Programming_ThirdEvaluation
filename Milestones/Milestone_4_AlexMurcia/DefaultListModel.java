@@ -1,5 +1,6 @@
 package Milestones.Milestone_4_AlexMurcia;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -64,6 +65,25 @@ public class DefaultListModel {
         return photographs;
     }
 
+    public ArrayList<Picture> pictures(){
+        ArrayList<Picture> picturs= new ArrayList<>();
+        try{
+            Statement statement= connection.createStatement();
+            ResultSet resultSet= statement.executeQuery("Select * From Pictures");
+            while(resultSet.next()){
+                int pictureId= resultSet.getInt("PictureId");
+                String title= resultSet.getString("Title");
+                Date date= resultSet.getDate("Date");
+                String file= resultSet.getString("File");
+                int visits= resultSet.getInt("Visits");
+                int photographerId= resultSet.getInt("PhotographerId");
+                picturs.add(new Picture(pictureId, title, date, file, visits, photographerId));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return picturs;
+    }
 
     public void close(){
         try{

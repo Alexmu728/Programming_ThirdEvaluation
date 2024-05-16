@@ -66,4 +66,8 @@ public class Picture {
     public void setPhotographerId(int photographerId) {
         this.photographerId = photographerId;
     }
+
+    public String toString(){
+        return this.title;
+    }
 }
