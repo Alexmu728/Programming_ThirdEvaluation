@@ -1,10 +1,9 @@
 package Milestones.Milestone_4_AlexMurcia;
 
-import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DefaultListModel {
+public class DB_Connection {
     static final String SERVER_IP = "localhost";
     static final String DB_NAME = "Milestone4";
     static final String USER = "root";
@@ -14,7 +13,7 @@ public class DefaultListModel {
 
     private Connection connection;
 
-    public DefaultListModel(){
+    public DB_Connection(){
         try{
             Class.forName(JDBC_DRIVER);
             System.out.println("Connecting to the database...");
@@ -27,27 +26,6 @@ public class DefaultListModel {
         }
     }
 
-
-    /*public Photographer[] photographers(){
-        Photographer[] photographs= new Photographer[3];
-        try{
-            Statement statement= connection.createStatement();
-            ResultSet resultSet= statement.executeQuery("Select * From Photographers");
-                while(resultSet.next()){
-                    Photographer photographer= new Photographer();
-                    for(int i=0; i<photographs.length;i++) {
-                        photographer.setPhotographerId(resultSet.getInt("PhotographerId"));
-                        photographer.setName(resultSet.getString("Name"));
-                        photographer.setAwarded(resultSet.getBoolean("Awarded"));
-                        photographs[i]=photographer;
-                    }
-                }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return photographs;
-    }
-*/
     public ArrayList<Photographer> photographers(){
         ArrayList<Photographer> photographs= new ArrayList<>();
         try{
@@ -94,8 +72,4 @@ public class DefaultListModel {
         }
     }
 
-    /*public static void main(String[] args) {
-        DefaultListModel dlm= new DefaultListModel();
-        dlm.close();
-    }*/
 }

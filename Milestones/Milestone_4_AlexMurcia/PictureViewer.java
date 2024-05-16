@@ -4,18 +4,14 @@ import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java.awt.event.WindowListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 
-public class PictureViewer extends JFrame {
+public class PictureViewer extends JFrame implements ItemListener {
     private JXDatePicker date;
 
-    DefaultListModel dl= new DefaultListModel();
+    DB_Connection dl= new DB_Connection();
 
     public PictureViewer() {
         super("Photography");
@@ -50,6 +46,8 @@ public class PictureViewer extends JFrame {
         JLabel dateName= new JLabel("Photos after");
         date=new JXDatePicker();
 
+        date.addActionListener();
+
         area2.add(dateName);
         area2.add(date);
 
@@ -58,16 +56,9 @@ public class PictureViewer extends JFrame {
 
         ArrayList<Picture> pictures= dl.pictures();
 
-        javax.swing.DefaultListModel<Picture> listModel= new javax.swing.DefaultListModel<>();
+        DefaultListModel<Picture> listModel= new DefaultListModel<>();
 
-        Iterator<Picture> iterator= pictures.iterator();
-
-        while(iterator.hasNext()){
-            Picture picture= iterator.next();
-            if(picture.getDate().after(date.getDate())){
-                listModel.addAll(pictures);
-            }
-        }
+        listModel.addAll(pictures);
 
         JList<Picture> list = new JList<>(listModel);
         list.setPreferredSize(new Dimension(290,130));
@@ -113,5 +104,10 @@ public class PictureViewer extends JFrame {
 
     public static void main(String[] args) {
         PictureViewer pv= new PictureViewer();
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent itemEvent) {
+
     }
 }
