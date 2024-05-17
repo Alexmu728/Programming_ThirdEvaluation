@@ -6,10 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
-public class PictureViewer extends JFrame implements ItemListener {
+public class PictureViewer extends JFrame implements ActionListener {
     private JXDatePicker date;
+    private JComboBox<Photographer> comboBox;
+    private Photographer selectedPhoto;
 
     DB_Connection dl= new DB_Connection();
 
@@ -31,12 +34,17 @@ public class PictureViewer extends JFrame implements ItemListener {
         DefaultComboBoxModel<Photographer> model= new DefaultComboBoxModel<>();
         model.addAll(photographerList);
 
-        JComboBox<Photographer> comboBox= new JComboBox<>(model);
+        comboBox= new JComboBox<>(model);
         comboBox.setSelectedIndex(0);
 
-        /*for(Photographer photographer : photographerList){
-            comboBox.addItem(photographer);
-        }*/
+        comboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedPhoto= (Photographer) comboBox.getSelectedItem();
+                System.out.println(selectedPhoto);
+            }
+        });
+
 
         area1.add(comboName);
         area1.add(comboBox);
@@ -46,10 +54,6 @@ public class PictureViewer extends JFrame implements ItemListener {
         JLabel dateName= new JLabel("Photos after");
         date=new JXDatePicker();
 
-        date.addActionListener();
-
-        area2.add(dateName);
-        area2.add(date);
 
         //Area 3
         JPanel area3= new JPanel();
@@ -70,6 +74,25 @@ public class PictureViewer extends JFrame implements ItemListener {
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
+
+        date.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Date picker=date.getDate();
+                System.out.println(picker);
+                listModel.clear();
+
+                Iterator<Picture> picIterator=pictures.iterator();
+                while(picIterator.hasNext()){
+                    Picture picture= picIterator.next();
+                    if(picture.getDate().after(picker) && picture.getPhotographerId()== selectedPhoto.getPhotographerId()){
+                        listModel.addElement(picture);
+                    }
+                }
+            }
+        });
+        area2.add(dateName);
+        area2.add(date);
 
         area3.add(scroll);
 
@@ -98,16 +121,13 @@ public class PictureViewer extends JFrame implements ItemListener {
         setVisible(true);
     }
 
-    public JXDatePicker getDate() {
-        return date;
-    }
 
     public static void main(String[] args) {
         PictureViewer pv= new PictureViewer();
     }
 
     @Override
-    public void itemStateChanged(ItemEvent itemEvent) {
+    public void actionPerformed(ActionEvent actionEvent) {
 
     }
 }
