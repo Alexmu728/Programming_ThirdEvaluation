@@ -75,6 +75,7 @@ public class PictureViewer extends JFrame implements ActionListener {
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 
+        //if a date is selected before a Photographer, it may show an error, but it keeps working
         date.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -117,6 +118,8 @@ public class PictureViewer extends JFrame implements ActionListener {
                     Image images= imageIcon.getImage().getScaledInstance(image.getWidth(), image
                             .getHeight(), Image.SCALE_SMOOTH);
                     ImageIcon imageIcon2= new ImageIcon(images);
+
+                    dl.incrementVisits(selectedPic);
 
                     image.setIcon(imageIcon2);
                 }
@@ -168,6 +171,10 @@ public class PictureViewer extends JFrame implements ActionListener {
     public static void main(String[] args) {
         PictureViewer pv= new PictureViewer();
     }
+
+    /*public void incrementVisits(Picture p){
+        if()
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

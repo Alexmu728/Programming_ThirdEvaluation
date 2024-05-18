@@ -63,6 +63,16 @@ public class DB_Connection {
         return picturs;
     }
 
+    public void incrementVisits(Picture p){
+        try{
+            PreparedStatement statement= connection.prepareStatement("Update Pictures Set Visits=Visits+1 Where PictureId=?");
+            statement.setInt(1, p.getPhotographerId());
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public void close(){
         try{
             connection.close();
