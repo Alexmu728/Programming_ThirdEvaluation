@@ -1,7 +1,7 @@
 package Milestones.Milestone_5_AlexMurcia;
 
-import Milestones.Milestone_4_AlexMurcia.Photographer;
-import Milestones.Milestone_4_AlexMurcia.Picture;
+import Milestones.Milestone_5_AlexMurcia.Photographer;
+import Milestones.Milestone_5_AlexMurcia.Picture;
 
 import java.sql.*;
 import java.util.ArrayList;

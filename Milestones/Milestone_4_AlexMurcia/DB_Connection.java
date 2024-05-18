@@ -63,6 +63,7 @@ public class DB_Connection {
         return picturs;
     }
 
+    //It does sum every time a picture is selected, but it sums in the wrong picture
     public void incrementVisits(Picture p){
         try{
             PreparedStatement statement= connection.prepareStatement("Update Pictures Set Visits=Visits+1 Where PictureId=?");

@@ -119,9 +119,9 @@ public class PictureViewer extends JFrame implements ActionListener {
                             .getHeight(), Image.SCALE_SMOOTH);
                     ImageIcon imageIcon2= new ImageIcon(images);
 
-                    dl.incrementVisits(selectedPic);
-
                     image.setIcon(imageIcon2);
+
+                    dl.incrementVisits(selectedPic);
                 }
 
             }
