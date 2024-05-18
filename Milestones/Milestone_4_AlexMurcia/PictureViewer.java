@@ -100,7 +100,50 @@ public class PictureViewer extends JFrame implements ActionListener {
         JPanel area4= new JPanel();
         JLabel image= new JLabel();
 
+        image.setPreferredSize(new Dimension(290, 130));
+
         area4.add(image);
+
+
+        list.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if(mouseEvent.getClickCount()==2){
+                    Picture selectedPic=list.getSelectedValue();
+
+                    String path=selectedPic.getFile();
+                    ImageIcon imageIcon= new ImageIcon(path);
+
+                    Image images= imageIcon.getImage().getScaledInstance(image.getWidth(), image
+                            .getHeight(), Image.SCALE_SMOOTH);
+                    ImageIcon imageIcon2= new ImageIcon(images);
+
+                    image.setIcon(imageIcon2);
+                }
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
+
+        });
 
 
         //Adding to grid layout
