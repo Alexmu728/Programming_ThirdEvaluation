@@ -34,6 +34,14 @@ public class PictureViewer extends JFrame implements ActionListener {
         JButton award= new JButton("AWARD");
         award.setPreferredSize(new Dimension(290, 100));
 
+        award.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String minVisits= JOptionPane.showInputDialog("Minimum no of visits for getting a prize:");
+
+            }
+        });
+
         area1.add(award);
 
         //Area 2
@@ -145,6 +153,7 @@ public class PictureViewer extends JFrame implements ActionListener {
 
                     HashMap<Integer, Integer> map= dl.createVisitsMap();
                     System.out.println(map);
+
                 }
             }
 
