@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class PictureViewer extends JFrame implements ActionListener {
@@ -141,8 +142,10 @@ public class PictureViewer extends JFrame implements ActionListener {
                     image.setIcon(imageIcon2);
 
                     dl.incrementVisits(selectedPic);
-                }
 
+                    HashMap<Integer, Integer> map= dl.createVisitsMap();
+                    System.out.println(map);
+                }
             }
 
             @Override

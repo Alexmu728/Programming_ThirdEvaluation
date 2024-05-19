@@ -5,6 +5,8 @@ import Milestones.Milestone_5_AlexMurcia.Picture;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DB_Connection {
     static final String SERVER_IP = "localhost";
@@ -66,14 +68,35 @@ public class DB_Connection {
         return picturs;
     }
 
+    //It does sum every time a picture is selected, but it sums in the wrong picture
     public void incrementVisits(Picture p){
         try{
-            PreparedStatement statement= connection.prepareStatement("Update Pictures Set Visits=Visits+1 Where PictureId=?");
+            PreparedStatement statement= connection.prepareStatement("Update Pictures Set Visits=Visits+1 Where PhotographerId=?");
             statement.setInt(1, p.getPhotographerId());
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public HashMap<Integer, Integer> createVisitsMap(){
+        HashMap<Integer, Integer> map= new HashMap<>();
+        try{
+            Statement statement= connection.createStatement();
+            ResultSet resultSet= statement.executeQuery("Select * From Pictures");
+            while (resultSet.next()){
+                int pictureId= resultSet.getInt("PictureId");
+                String title= resultSet.getString("Title");
+                Date date= resultSet.getDate("Date");
+                String file= resultSet.getString("File");
+                int visits= resultSet.getInt("Visits");
+                int photographerId= resultSet.getInt("PhotographerId");
+                map.put(photographerId, visits);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return map;
     }
 
     public void close(){
