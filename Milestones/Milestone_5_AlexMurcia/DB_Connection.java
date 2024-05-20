@@ -115,6 +115,26 @@ public class DB_Connection {
         }
     }
 
+    public void deletePic(int picId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("Delete From Pictures where PictureId=?");
+            preparedStatement.setInt(1, picId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deletePhoto(int photoId){
+        try{
+            PreparedStatement preparedStatement= connection.prepareStatement("Delete From Photographers where PhotographerId=?");
+            preparedStatement.setInt(1, photoId);
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public void close(){
         try{
             connection.close();

@@ -214,6 +214,33 @@ public class PictureViewer extends JFrame implements ActionListener {
             }
         });
 
+        remove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Iterator<Picture> picIt= pictures.iterator();
+
+                while(picIt.hasNext()){
+                    Picture picture= picIt.next();
+                    Iterator<Photographer> photoIt=photographerList.iterator();
+
+                    while (photoIt.hasNext()) {
+                        Photographer photographer=photoIt.next();
+
+                        if (picture.getVisits() == 0 && photographer.getAwarded() == false) {
+                            int option = JOptionPane.showConfirmDialog(null, "Want to delete picture " + picture.getTitle() + "?");
+                            System.out.println(option);
+                            if (option == 0) {
+                                dl.deletePic(picture.getPictureId());
+                                if(picture.getPhotographerId()==0){
+                                    dl.deletePhoto(photographer.getPhotographerId());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
         this.add(grid1);
         this.pack();
         setVisible(true);
