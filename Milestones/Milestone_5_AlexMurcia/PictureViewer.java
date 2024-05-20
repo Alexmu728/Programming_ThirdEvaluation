@@ -193,7 +193,10 @@ public class PictureViewer extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent actionEvent) {
                 String option= JOptionPane.showInputDialog("Minimum no of visits for getting a prize:");
                 int minVisits=Integer.parseInt(option);
+                Iterator<Picture> picIterator=pictures.iterator();
                 Iterator<Photographer> photoIterator= photographerList.iterator();
+                while(picIterator.hasNext()){
+                    Picture picture=picIterator.next();
                     while(photoIterator.hasNext()) {
                         Photographer photographer= photoIterator.next();
                         if (map.get(photographer.getPhotographerId()) > minVisits && picture.getPhotographerId() ==photographer.getPhotographerId()) {
@@ -203,6 +206,7 @@ public class PictureViewer extends JFrame implements ActionListener {
                         }
                     }
                 }
+            }
         });
 
         this.add(grid1);
