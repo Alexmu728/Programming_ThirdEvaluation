@@ -17,6 +17,7 @@ public class PictureViewer extends JFrame implements ActionListener {
     private JXDatePicker date;
     private JComboBox<Photographer> comboBox;
     private Photographer selectedPhoto;
+    private HashMap<Integer, Integer> map;
 
     DB_Connection dl= new DB_Connection();
 
@@ -34,13 +35,9 @@ public class PictureViewer extends JFrame implements ActionListener {
         JButton award= new JButton("AWARD");
         award.setPreferredSize(new Dimension(290, 100));
 
-        award.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                String minVisits= JOptionPane.showInputDialog("Minimum no of visits for getting a prize:");
+        ArrayList<Picture> pictures=dl.pictures();
+        ArrayList<Photographer> photographerList= dl.photographers();
 
-            }
-        });
 
         area1.add(award);
 
@@ -56,8 +53,6 @@ public class PictureViewer extends JFrame implements ActionListener {
         JPanel area3= new JPanel();
         JLabel comboName= new JLabel("Photographer: ");
 
-
-        ArrayList<Photographer> photographerList= dl.photographers();
 
         DefaultComboBoxModel<Milestones.Milestone_5_AlexMurcia.Photographer> model= new DefaultComboBoxModel<>();
         model.addAll(photographerList);
@@ -85,8 +80,6 @@ public class PictureViewer extends JFrame implements ActionListener {
 
         //Area 5
         JPanel area5= new JPanel();
-
-        ArrayList<Picture> pictures=dl.pictures();
 
         DefaultListModel<Picture> listModel= new DefaultListModel<>();
 
@@ -151,7 +144,7 @@ public class PictureViewer extends JFrame implements ActionListener {
 
                     dl.incrementVisits(selectedPic);
 
-                    HashMap<Integer, Integer> map= dl.createVisitsMap();
+                    map= dl.createVisitsMap();
                     System.out.println(map);
 
                 }
@@ -193,6 +186,23 @@ public class PictureViewer extends JFrame implements ActionListener {
             public void windowClosing(WindowEvent e) {
                 dl.close();
             }
+        });
+
+        award.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String option= JOptionPane.showInputDialog("Minimum no of visits for getting a prize:");
+                int minVisits=Integer.parseInt(option);
+                Iterator<Photographer> photoIterator= photographerList.iterator();
+                    while(photoIterator.hasNext()) {
+                        Photographer photographer= photoIterator.next();
+                        if (map.get(photographer.getPhotographerId()) > minVisits && picture.getPhotographerId() ==photographer.getPhotographerId()) {
+                            photographer.setAwarded(true);
+                        }else{
+                            photographer.setAwarded(false);
+                        }
+                    }
+                }
         });
 
         this.add(grid1);

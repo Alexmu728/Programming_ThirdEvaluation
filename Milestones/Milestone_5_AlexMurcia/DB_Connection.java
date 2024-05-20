@@ -6,6 +6,7 @@ import Milestones.Milestone_5_AlexMurcia.Picture;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class DB_Connection {
@@ -91,12 +92,35 @@ public class DB_Connection {
                 String file= resultSet.getString("File");
                 int visits= resultSet.getInt("Visits");
                 int photographerId= resultSet.getInt("PhotographerId");
-                map.put(photographerId, visits);
+                if(map.containsKey(photographerId)){
+                    int newVisits=map.get(photographerId);
+                    map.put(photographerId, newVisits+visits);
+                }else{
+                    map.put(photographerId, visits);
+                }
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
         return map;
+    }
+
+    public void setTrue(){
+        try{
+            PreparedStatement preparedStatement=connection.prepareStatement("Update Photographer Set Awarded=1 ");
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void setFalse(){
+        try{
+            PreparedStatement preparedStatement=connection.prepareStatement("Update Photographer Set Awarded=0 ");
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public void close(){
