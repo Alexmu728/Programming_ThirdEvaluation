@@ -104,19 +104,11 @@ public class DB_Connection {
         }
         return map;
     }
-
-    public void setTrue(){
+    public void setAward(boolean awarded, int photoId){
         try{
-            PreparedStatement preparedStatement=connection.prepareStatement("Update Photographer Set Awarded=1 ");
-            preparedStatement.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void setFalse(){
-        try{
-            PreparedStatement preparedStatement=connection.prepareStatement("Update Photographer Set Awarded=0 ");
+            PreparedStatement preparedStatement=connection.prepareStatement("Update Photographers Set Awarded=? where PhotographerId=? ");
+            preparedStatement.setBoolean(1, awarded);
+            preparedStatement.setInt(2, photoId);
             preparedStatement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();

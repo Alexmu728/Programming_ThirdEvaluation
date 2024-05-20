@@ -193,16 +193,21 @@ public class PictureViewer extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent actionEvent) {
                 String option= JOptionPane.showInputDialog("Minimum no of visits for getting a prize:");
                 int minVisits=Integer.parseInt(option);
-                Iterator<Picture> picIterator=pictures.iterator();
+
+                HashMap<Integer, Integer> hash= dl.createVisitsMap();
                 Iterator<Photographer> photoIterator= photographerList.iterator();
-                while(picIterator.hasNext()){
-                    Picture picture=picIterator.next();
-                    while(photoIterator.hasNext()) {
-                        Photographer photographer= photoIterator.next();
-                        if (map.get(photographer.getPhotographerId()) > minVisits && picture.getPhotographerId() ==photographer.getPhotographerId()) {
-                            photographer.setAwarded(true);
-                        }else{
-                            photographer.setAwarded(false);
+
+                while(photoIterator.hasNext()) {
+                    Photographer photographer= photoIterator.next();
+
+                    //Same structure as in createVisitsMap
+                    if (hash.containsKey(photographer.getPhotographerId())) {
+                        int visits = hash.get(photographer.getPhotographerId());
+
+                        if (visits >= minVisits) {
+                            dl.setAward(true, photographer.getPhotographerId());
+                        } else {
+                            dl.setAward(false, photographer.getPhotographerId());
                         }
                     }
                 }
